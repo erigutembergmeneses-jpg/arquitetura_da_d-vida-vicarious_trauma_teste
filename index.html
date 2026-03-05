@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arquiteturas da Dúvida · como redesenhar o sistema penal contra os vieses da mente humana</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+      background-color: #f4f2ef;
+      color: #2d2a27;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 2rem;
+    }
+
+    /* tipografia */
+    h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: #1e2b34;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 500;
+      margin: 2.5rem 0 1rem;
+      border-left: 6px solid #b3855a;
+      padding-left: 1.2rem;
+      color: #1e3b4a;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin: 1.8rem 0 1rem;
+      color: #4d443c;
+    }
+
+    p {
+      margin-bottom: 1.25rem;
+      font-size: 1.1rem;
+      text-align: justify;
+    }
+
+    a {
+      color: #8a6e4e;
+      text-decoration: none;
+      border-bottom: 1px solid #d4c9bc;
+    }
+
+    a:hover {
+      color: #4f3c2b;
+      border-bottom: 2px solid #b3855a;
+    }
+
+    /* cabeçalho impactante */
+    .hero {
+      background: #1c2b33;
+      background-image: radial-gradient(circle at 10% 30%, #2a404d 0%, #0f1e26 100%);
+      color: #f0ebe4;
+      padding: 4rem 2rem;
+      border-bottom: 8px solid #b3855a;
+    }
+
+    .hero-content {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .pretitle {
+      display: inline-block;
+      font-size: 0.9rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: #c7b29b;
+      margin-bottom: 1rem;
+      border-left: 3px solid #b3855a;
+      padding-left: 1rem;
+    }
+
+    h1 span.doubt {
+      font-weight: 300;
+      color: #d4b48c;
+      display: block;
+      font-size: 2.8rem;
+      text-transform: none;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 1.3rem;
+      margin: 1.5rem 0 0.5rem;
+      max-width: 700px;
+      font-style: italic;
+      color: #c7bcaf;
+    }
+
+    .meta-line {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      font-size: 0.95rem;
+      color: #b0a392;
+    }
+
+    /* cartões de destaque */
+    .card-system {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2rem;
+      margin: 2.5rem 0;
+      box-shadow: 0 12px 28px -8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      border: 1px solid #e5dbd1;
+    }
+
+    .card-s1, .card-s2 {
+      flex: 1 1 250px;
+      padding: 1.8rem 1.5rem;
+      border-radius: 16px;
+      background: #fbf9f7;
+    }
+
+    .card-s1 {
+      border-top: 6px solid #bb5b4a;
+    }
+
+    .card-s2 {
+      border-top: 6px solid #2d7a70;
+    }
+
+    .card-s1 h4, .card-s2 h4 {
+      font-size: 1.8rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+
+    .card-s1 h4 span, .card-s2 h4 span {
+      font-weight: 700;
+    }
+
+    .tag {
+      background: #e7dfd6;
+      color: #3a3530;
+      font-size: 0.75rem;
+      padding: 0.3rem 0.9rem;
+      border-radius: 30px;
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* caixa de ficção */
+    .fiction-box {
+      background-color: #eae3db;
+      border-radius: 24px;
+      padding: 2rem 2rem 1.5rem;
+      margin: 2.5rem 0;
+      border: 1px solid #cdbfb0;
+      box-shadow: inset 0 0 0 1px #f9f5f0;
+    }
+
+    .fiction-label {
+      display: inline-block;
+      background: #b3855a;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0.25rem 1rem;
+      border-radius: 30px;
+      margin-bottom: 1.2rem;
+    }
+
+    .story-time {
+      font-family: 'Courier New', monospace;
+      color: #4e4b48;
+      border-left: 4px solid #b3855a;
+      padding-left: 1.8rem;
+      margin: 1.5rem 0;
+    }
+
+    .story-time p {
+      margin-bottom: 1rem;
+      font-size: 1.05rem;
+    }
+
+    .quote {
+      font-style: italic;
+      font-size: 1.2rem;
+      background: #d7cdc0;
+      padding: 1.5rem;
+      border-radius: 12px;
+      color: #1a1a1a;
+      margin: 1.8rem 0;
+    }
+
+    /* bloco de arquitetura */
+    .architecture-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .arch-item {
+      flex: 1 1 200px;
+      background: #d9d0c4;
+      padding: 1.5rem;
+      border-radius: 32px 32px 32px 8px;
+      background: #ffffffd6;
+      border: 1px solid #cec1b2;
+    }
+
+    .arch-item strong {
+      color: #b3855a;
+      font-size: 1.2rem;
+    }
+
+    /* rodapé e readme */
+    .footer-block {
+      border-top: 2px solid #d6cbbc;
+      margin-top: 4rem;
+      padding: 2rem 0 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .readme-block {
+      background: #1e2b34;
+      color: #e0d9cf;
+      padding: 1.8rem;
+      border-radius: 20px;
+      margin-top: 2rem;
+    }
+
+    .readme-block pre {
+      background: #2c3e48;
+      padding: 1.2rem;
+      border-radius: 12px;
+      color: #d9d2c5;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      font-family: 'Fira Code', monospace;
+      border: 1px solid #4a5c68;
+    }
+
+    @media (max-width: 650px) {
+      h1 { font-size: 2.2rem; }
+      h1 span.doubt { font-size: 1.8rem; }
+      .container { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-content">
+      <div class="pretitle">psicologia cognitiva · projeto de justiça</div>
+      <h1>ARQUITETURAS <span class="doubt">DA DÚVIDA</span></h1>
+      <div class="subtitle">Como redesenhar o sistema penal contra os vieses da mente humana</div>
+      <div class="meta-line">
+        <span>🔍 baseado em Kahneman, Tversky & pesquisa forense</span>
+        <span>⚖️ 14 casos reais + 1 ilustração ficcional</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+    <!-- CAPÍTULO 1.1 – ILUSTRAÇÃO FICCIONAL (AGORA COM TÍTULO CORRETO) -->
+    <h2>1.1 · A armadilha do primeiro olhar</h2>
+    <div class="fiction-box">
+      <span class="fiction-label">cenário verossímil · ilustração didática</span>
+      <p>Eram 3h17 da madrugada de 14 de março de 2019 quando o delegado plantonista da 14ª DP/RJ recebeu a notícia: corpo feminino encontrado carbonizado em via pública na Zona Norte do Rio. Ao chegar ao local, viu o que seus olhos treinados, após quinze anos de carreira, imediatamente catalogaram: mulher jovem, vestígios de violência sexual, sinais de estrangulamento prévio à queima. O marido, um motorista de aplicativo de 32 anos, já estava na delegacia, trazido por populares que o viram discutindo com a vítima horas antes. Ao ser ouvido, gaguejou, evitou contato visual e apresentou arranhões nos braços.</p>
+      <div class="story-time">
+        <p style="font-weight: 600;">“É ele”, pensou o delegado. “Clássico feminicídio seguido de ocultação de cadáver.”</p>
+      </div>
+      <p>Nas 72 horas seguintes, a investigação seguiu um script previsível: busca de provas que confirmassem a suspeita inicial — busca e apreensão na residência do casal, análise de histórico de violência doméstica — e negligência sistemática de linhas alternativas. Não houve perícia no celular da vítima para verificar contatos recentes. Não se investigou o paradeiro de um ex-namorado que ameaçara a mulher semanas antes. O marido foi indiciado por feminicídio qualificado. A denúncia foi oferecida em dezoito dias, recorde para a unidade.</p>
+      <p>Sete meses depois, o DNA coletado sob as unhas da vítima identificou outro homem: um vizinho que confessou o crime após ser confrontado com a prova genética. O marido foi absolvido. O delegado, ao ser questionado internamente sobre o erro, respondeu com honestidade desconcertante: <em>“Naquele momento, tudo indicava que era ele. O comportamento, o histórico, a cena do crime... Parecia óbvio.”</em></p>
+    </div>
+
+    <!-- TRANSIÇÃO: SISTEMA 1 / SISTEMA 2 -->
+    <div class="quote">
+      “Essa obviedade enganosa é a assinatura do <strong>Sistema 1</strong> — e a origem silenciosa de incontáveis erros judiciais.”
+    </div>
+
+    <p>Esta narrativa — ainda que <strong>fictícia</strong> — ilustra um fenômeno real e amplamente documentado: a tendência do cérebro humano de buscar confirmações para a primeira impressão, em vez de testar hipóteses alternativas. A história poderia ter acontecido em qualquer distrito policial, com qualquer delegado, sob a pressão cotidiana da investigação criminal. E é justamente por sua verossimilhança que nos serve como ponto de partida para compreender um dos maiores desafios da atividade judiciária: a armadilha do primeiro olhar.</p>
+
+    <!-- SISTEMA 1/2 EXPLICADO COM CARDS -->
+    <div class="card-system">
+      <div class="card-s1">
+        <h4><span>Sistema</span> 1</h4>
+        <ul style="list-style: none; margin-top: 1rem;">
+          <li>⚡ automático / intuitivo</li>
+          <li>⚡ associações rápidas</li>
+          <li>⚡ opera com pouca energia</li>
+          <li>⚡ certeza subjetiva</li>
+          <li style="color: #bb5b4a; font-weight: 500;">⇢ viés de confirmação</li>
+        </ul>
+      </div>
+      <div class="card-s2">
+        <h4><span>Sistema</span> 2</h4>
+        <ul style="list-style: none; margin-top: 1rem;">
+          <li>🐢 deliberado / analítico</li>
+          <li>🐢 testa hipóteses</li>
+          <li>🐢 exige esforço e tempo</li>
+          <li>🐢 ceticismo metódico</li>
+          <li style="color: #2d7a70; font-weight: 500;">⇢ correção de rota</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CONEXÃO COM O TEMA DO LIVRO -->
+    <h2>arquitetar a dúvida</h2>
+    <p>O caso do delegado (embora imaginário) carrega os elementos típicos da heurística de ancoragem: um profissional experiente, uma cena que "parece óbvia", a pressa em confirmar a primeira suspeita. A obra <strong>ARQUITETURAS DA DÚVIDA</strong> propõe que não basta apontar os vieses — é preciso <em>redesenhar</em> os processos, os formulários, as rotinas e até a arquitetura física das delegacias para que o Sistema 2 seja acionado antes que o dano aconteça. A "dúvida metódica" precisa estar incorporada no sistema, não apenas na mente dos agentes.</p>
+
+    <!-- PRINCÍPIOS DE REDESENHO -->
+    <h3>contra-medidas institucionais</h3>
+    <div class="architecture-grid">
+      <div class="arch-item"><strong>checklists</strong> · como na aviação, para interromper o automático</div>
+      <div class="arch-item"><strong>rotação de olhares</strong> · segunda opinião obrigatória</div>
+      <div class="arch-item"><strong>linhas alternativas</strong> · um investigador dedicado a falsificar a hipótese principal</div>
+      <div class="arch-item"><strong>cegos à acusação</strong> · separar quem coleta prova de quem investiga</div>
+    </div>
+
+    <!-- NOTA SOBRE A FICÇÃO (reforço) -->
+    <h2>por que um caso fictício?</h2>
+    <p>O leitor atento notou: o caso do delegado e do motorista de aplicativo <strong>não é real</strong>. Não há registros na 14ª DP/RJ, nem na data indicada, de um erro com essas características. A narrativa foi construída como uma <em>ilustração didática</em>, um cenário verossímil que reúne, em poucos parágrafos, os elementos clássicos do viés de confirmação: a força da primeira evidência, a negligência de linhas alternativas, a confiança excessiva na intuição. Se parece real para você, é porque esses padrões se repetem na prática, ainda que os nomes e lugares sejam inventados.</p>
+    <p>Ao deixar explícito seu caráter fictício, preservamos a honestidade com o leitor e evitamos a propagação de um “falso caso real”. A verdade dos fatos reais é tratada em outros capítulos com a devida referência; aqui, a ficção serve à reflexão sobre <strong>arquiteturas da dúvida</strong>.</p>
+
+    <!-- rodapé com README.md -->
+    <div class="footer-block">
+      <div style="font-weight: 300;">ARQUITETURAS DA DÚVIDA · livro em construção</div>
+      <div>
+        <a href="#" style="margin-right: 1.2rem;">índice</a>
+        <a href="https://github.com/seu-usuario/arquiteturas-duvida" target="_blank">github</a>
+      </div>
+    </div>
+
+    <!-- bloco README (representação) -->
+    <div class="readme-block">
+      <p style="margin-bottom: 0.5rem; font-weight: 500; letter-spacing: 1px;">📄 README.md (repositório)</p>
+      <pre>
+# ARQUITETURAS DA DÚVIDA
+**Como redesenhar o sistema penal contra os vieses da mente humana**
+
+Repositório oficial do livro. Contém:
+- `index.html` – página de apresentação e trecho 1.1
+- `/capitulos` – rascunhos e ilustrações
+- `/referencias` – base bibliográfica (Kahneman, etc.)
+
+## Sobre a ilustração 1.1
+O caso do delegado da 14ª DP/RJ (corpo carbonizado, marido acusado) é **completamente fictício**, criado para demonstrar a armadilha do Sistema 1. Qualquer semelhança com fatos reais é mera coincidência; não há registro de erro com essas características na unidade mencionada.
+
+## Licença
+MIT – livre para estudo e adaptação, com menção à obra.
+      </pre>
+    </div>
+  </main>
+</body>
+</html>
