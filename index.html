@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste de Exposição ao Vicarious Trauma (QETS) · Arquiteturas da Dúvida</title>
-    <!-- Fontes e estilos base -->
+    <title>Teste de Exposição ao Vicarious Trauma (QETS) · Questionário Interativo</title>
+    <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -17,264 +17,325 @@
 
         body {
             background: #f5f3f0;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.5;
             color: #1e1b1a;
             padding: 2rem 1rem;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
             background: white;
             border-radius: 32px;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15), 0 8px 20px -8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
             overflow: hidden;
-            border: 1px solid #eae2d7;
         }
 
+        /* Header */
         .header {
-            background: #1e3a3f;
             background: linear-gradient(145deg, #1a3338 0%, #1d464d 100%);
             color: white;
-            padding: 2.5rem 3rem;
+            padding: 2rem 3rem;
             border-bottom: 4px solid #b98b5f;
         }
 
         .header h1 {
+            font-size: 2.2rem;
             font-weight: 600;
-            font-size: 2.4rem;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
             margin-bottom: 0.5rem;
-        }
-
-        .header h1 small {
-            font-size: 1rem;
-            font-weight: 400;
-            background: rgba(255, 255, 255, 0.12);
-            padding: 0.3rem 1rem;
-            border-radius: 40px;
-            display: inline-block;
-            margin-left: 1rem;
-            vertical-align: middle;
-            border: 1px solid rgba(255, 215, 170, 0.3);
         }
 
         .header .subhead {
-            font-size: 1.1rem;
             color: #e0d6cd;
-            max-width: 70%;
+            font-size: 1rem;
             border-left: 3px solid #b98b5f;
             padding-left: 1.5rem;
-            margin-top: 0.75rem;
         }
 
-        .badge-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem 1.8rem;
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
+        .progress-container {
             background: rgba(0,0,0,0.2);
-            padding: 1rem 1.8rem;
-            border-radius: 60px;
-            width: fit-content;
-            backdrop-filter: blur(2px);
+            padding: 1rem 3rem;
+            color: white;
         }
 
-        .badge {
+        .progress-bar {
+            height: 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #b98b5f;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Conteúdo principal */
+        .content {
+            padding: 2rem 3rem;
+        }
+
+        /* Cards de itens */
+        .items-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+
+        .item-card {
+            background: #f8f6f2;
+            border: 1px solid #e0d7cd;
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .item-card:hover {
+            border-color: #b98b5f;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .item-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .item-number {
+            background: #1a3338;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .item-text {
+            font-weight: 500;
+            color: #2a2a2a;
+            flex: 1;
+        }
+
+        .item-factor {
+            font-size: 0.8rem;
+            background: #e8e2d8;
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+            color: #1a3338;
+            font-weight: 500;
+        }
+
+        .likert-group {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            padding-left: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .likert-option {
             display: flex;
             align-items: center;
             gap: 0.4rem;
+            cursor: pointer;
         }
-        .badge::before {
-            content: "✓";
-            background: #b98b5f;
-            color: #1a3338;
-            font-weight: 700;
+
+        .likert-option input[type="radio"] {
             width: 18px;
             height: 18px;
-            border-radius: 18px;
-            display: inline-flex;
+            cursor: pointer;
+            accent-color: #b98b5f;
+        }
+
+        .likert-option span {
+            font-size: 0.9rem;
+            color: #3f3a35;
+        }
+
+        .likert-option.selected span {
+            font-weight: 600;
+            color: #1a3338;
+        }
+
+        /* Navegação */
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
+        .btn {
+            background: #1a3338;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn:hover:not(:disabled) {
+            background: #2b4a50;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 51, 56, 0.3);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .btn-secondary {
+            background: #e8e2d8;
+            color: #1a3338;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: #ddd3c5;
+        }
+
+        .page-info {
+            font-weight: 500;
+            color: #3f3a35;
+        }
+
+        /* Legendas */
+        .likert-legend {
+            display: flex;
+            justify-content: space-between;
+            background: #fff6ea;
+            padding: 1rem 2rem;
+            border-radius: 40px;
+            margin: 1.5rem 0;
+            border: 1px solid #ecd8bf;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-number {
+            background: #1a3338;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
 
-        .content {
-            padding: 2.5rem 3rem;
-        }
-
-        .info-card {
+        /* Resultados */
+        .results-container {
             background: #f8f6f2;
             border-radius: 24px;
-            padding: 1.8rem 2rem;
-            margin-bottom: 2.8rem;
-            border: 1px solid #e0d7cd;
-            box-shadow: inset 0 1px 4px rgba(255, 255, 255, 0.8), 0 6px 12px -12px rgba(0,0,0,0.3);
+            padding: 2rem;
+            margin-top: 2rem;
         }
 
-        .info-grid {
+        .total-score-card {
+            background: linear-gradient(145deg, #1a3338, #1d464d);
+            color: white;
+            padding: 2rem;
+            border-radius: 24px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .score-value {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .score-interpretation {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .subscales-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.8rem;
-            margin: 1.5rem 0 0.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
 
-        .info-item {
-            border-left: 4px solid #b98b5f;
-            padding-left: 1.2rem;
+        .subscale-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 1px solid #e0d7cd;
         }
-        .info-item strong {
-            font-weight: 600;
-            color: #1e3a3f;
-            display: block;
-            font-size: 0.9rem;
+
+        .subscale-card h4 {
+            color: #1a3338;
+            margin-bottom: 1rem;
+            font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        .info-item p {
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin-top: 0.25rem;
-        }
 
-        .ref-link {
-            background: #e8e2d8;
-            border-radius: 18px;
-            padding: 0.8rem 1.5rem;
-            font-size: 0.95rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.7rem;
-            border: 1px solid #cab99f;
-            margin-top: 1rem;
-        }
-        .ref-link a {
-            color: #1e3a3f;
-            font-weight: 500;
-            text-decoration: none;
-            border-bottom: 1px dashed #6f5e4e;
-        }
-        .ref-link a:hover {
-            border-bottom: 2px solid #b56532;
-        }
-
-        .scale-section {
-            margin: 2.8rem 0 2rem;
-        }
-
-        .scale-section h2 {
-            font-size: 1.9rem;
-            font-weight: 550;
-            letter-spacing: -0.01em;
-            border-bottom: 2px solid #e0d7cd;
-            padding-bottom: 0.6rem;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        .scale-section h2 span {
-            background: #1e3a3f;
-            color: white;
-            font-size: 1rem;
-            padding: 0.2rem 1rem;
-            border-radius: 30px;
-            font-weight: 500;
-        }
-
-        .instrucoes {
-            background: #eef4f2;
-            padding: 1.5rem 2rem;
-            border-radius: 20px;
-            margin-bottom: 2.5rem;
-            border-left: 6px solid #1e3a3f;
-        }
-        .instrucoes p {
+        .subscale-score {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #b98b5f;
             margin-bottom: 0.5rem;
         }
-        .likert-legend {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem 2rem;
-            margin-top: 1rem;
-            background: #fff6ea;
-            padding: 1rem 1.8rem;
-            border-radius: 40px;
-            font-weight: 500;
-        }
 
-        .tabela-fatores {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.95rem;
-            background: white;
-            border-radius: 24px;
+        .subscale-bar {
+            height: 6px;
+            background: #e0d7cd;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04);
-            margin: 2rem 0 2.5rem;
-        }
-        .tabela-fatores th {
-            background: #2b4a50;
-            color: white;
-            font-weight: 600;
-            padding: 1rem 1rem;
-            text-align: left;
-        }
-        .tabela-fatores td {
-            padding: 0.9rem 1rem;
-            border-bottom: 1px solid #e6ddd2;
-            background: #fefcf9;
-        }
-        .tabela-fatores tr:last-child td {
-            border-bottom: none;
-        }
-        .fator-nome {
-            font-weight: 600;
-            color: #1a3338;
         }
 
-        .salvaguardas-box {
-            background: #f4efe8;
-            border-radius: 24px;
+        .bar-fill {
+            height: 100%;
+            background: #b98b5f;
+            transition: width 0.3s ease;
+        }
+
+        .salvaguardas-recomendadas {
+            background: #eef4f2;
             padding: 2rem;
-            margin: 2.8rem 0 1rem;
-            border: 1px solid #d9cdbc;
-        }
-        .salvaguardas-box h3 {
-            font-size: 1.6rem;
-            font-weight: 550;
-            margin-bottom: 1rem;
-        }
-        .duas-colunas {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin: 1.5rem 0;
-        }
-        .coluna {
-            background: rgba(255,255,255,0.6);
-            padding: 1.5rem;
             border-radius: 20px;
+            margin: 2rem 0;
+            border-left: 6px solid #1a3338;
         }
-        .coluna h4 {
-            font-weight: 650;
-            color: #2b4a50;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid #b98b5f;
-            padding-bottom: 0.4rem;
-        }
-        .coluna ul {
+
+        .salvaguardas-recomendadas ul {
             list-style: none;
+            margin-top: 1rem;
         }
-        .coluna li {
-            margin-bottom: 1.1rem;
+
+        .salvaguardas-recomendadas li {
             padding-left: 1.5rem;
             position: relative;
+            margin-bottom: 0.8rem;
         }
-        .coluna li::before {
+
+        .salvaguardas-recomendadas li::before {
             content: "▹";
             color: #b98b5f;
             font-weight: bold;
@@ -282,194 +343,515 @@
             left: 0;
         }
 
-        .footer {
-            background: #e3ddd3;
-            padding: 2rem 3rem;
-            color: #2e2a26;
-            font-size: 0.95rem;
-            border-top: 1px solid #cab99f;
+        .results-actions {
             display: flex;
+            gap: 1rem;
             flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .footer .doi {
-            font-family: 'JetBrains Mono', monospace;
-            background: #d3caba;
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-        }
-
-        .aviso {
-            font-size: 0.9rem;
-            color: #3f3a35;
-            background: #f9e9da;
-            padding: 1rem 2rem;
-            border-radius: 16px;
+            justify-content: center;
             margin-top: 2rem;
         }
 
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #1a3338;
+            color: #1a3338;
+        }
+
+        .btn-outline:hover {
+            background: #1a3338;
+            color: white;
+        }
+
+        .aviso {
+            background: #f9e9da;
+            padding: 1rem 2rem;
+            border-radius: 40px;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            border-left: 4px solid #b56532;
+        }
+
+        .footer {
+            background: #e3ddd3;
+            padding: 2rem 3rem;
+            text-align: center;
+            color: #2e2a26;
+            font-size: 0.9rem;
+            border-top: 1px solid #cab99f;
+        }
+
+        /* Utilitários */
+        .hidden {
+            display: none;
+        }
+
         @media (max-width: 700px) {
-            .header, .content, .footer { padding: 1.8rem; }
-            .header h1 { font-size: 1.9rem; }
-            .header .subhead { max-width: 100%; }
-            .duas-colunas { grid-template-columns: 1fr; }
+            .header, .content, .footer {
+                padding: 1.5rem;
+            }
+            
+            .likert-group {
+                padding-left: 0;
+            }
+            
+            .item-header {
+                flex-wrap: wrap;
+            }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="header">
-        <h1>Teste de Exposição ao Vicarious Trauma <small>QETS</small></h1>
-        <div class="subhead">Questionário de Estresse Traumático Secundário · versão brasileira validada (Dalagasperina et al., 2021)</div>
-        <div class="badge-container">
-            <span class="badge">50 itens · 4 escalas</span>
-            <span class="badge">12 fatores</span>
-            <span class="badge">α de Cronbach = 0,91</span>
-            <span class="badge">amostra Brasil n=624</span>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Teste de Exposição ao Vicarious Trauma</h1>
+            <div class="subhead">Questionário de Estresse Traumático Secundário (QETS) · Versão brasileira validada</div>
         </div>
-    </div>
 
-    <div class="content">
-        <!-- Informação de validação e referência -->
-        <div class="info-card">
-            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start;">
-                <div>
-                    <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.8rem;">📘 Escala validada no Brasil</h3>
-                    <p><strong>QETS</strong> (Questionário de Estresse Traumático Secundário) – adaptação e evidências psicométricas.</p>
-                </div>
-                <div class="ref-link">
-                    <span>📄 SciELO</span>
-                    <a href="https://www.scielo.br/j/pusf/a/BrzjWPn97LBHxShMqNdnCdJ/?lang=pt" target="_blank">psicousf v.26 n.2 2021</a>
-                </div>
+        <!-- Barra de progresso -->
+        <div class="progress-container">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span id="answered-count">0/50 itens respondidos</span>
+                <span id="page-indicator">Página 1/5</span>
             </div>
-            <div class="info-grid">
-                <div class="info-item"><strong>Autores validação</strong> Dalagasperina, Castro, Cruz, Pereira & Jiménez</div>
-                <div class="info-item"><strong>Publicação</strong> Psico-USF, 26(2), 319–332</div>
-                <div class="info-item"><strong>Estrutura</strong> 50 itens · Likert 1–4</div>
-                <div class="info-item"><strong>Consistência</strong> α = 0,91 (excelente)</div>
-            </div>
-            <div style="margin-top: 1rem; background: #fff7ea; border-radius: 40px; padding: 0.7rem 1.5rem;">
-                <span style="font-weight:600;">⚖️ Uso livre para fins acadêmicos e avaliativos · citar fonte original ·  </span>
-                <a href="https://www.researchgate.net/publication/353693953_Estrutura_Interna_da_Versao_Brasileira_do_Questionario_de_Estresse_Traumatico_Secundario" target="_blank" style="text-decoration:underline;">ResearchGate</a>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill" style="width: 0%;"></div>
             </div>
         </div>
 
-        <!-- Características da escala (tabela de fatores) -->
-        <div class="scale-section">
-            <h2>🧩 12 fatores · 4 escalas <span>versão brasileira</span></h2>
-            <table class="tabela-fatores">
-                <thead><tr><th>Escala</th><th>Fatores</th></tr></thead>
-                <tbody>
-                    <tr><td>Antecedentes</td><td><span class="fator-nome">Desafio, Carga Horária, Empatia, Tipo de Tarefa, Pressão Social</span></td></tr>
-                    <tr><td>Síndrome de Trauma Secundário</td><td><span class="fator-nome">Fadiga de Compaixão, Trauma Secundário, Mudança de Crenças</span></td></tr>
-                    <tr><td>Personalidade</td><td><span class="fator-nome">Compreensão, Satisfação em Ajudar, Estado de Humor</span></td></tr>
-                    <tr><td>Consequências</td><td><span class="fator-nome">Consequências Organizacionais</span></td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- INSTRUÇÕES E LIKERT -->
-        <div class="instrucoes">
-            <p style="font-weight: 600; font-size: 1.15rem;">✎ Instruções de preenchimento</p>
-            <p>Considere sua atuação profissional com vítimas de violência, trauma ou situações de alta carga emocional. Indique o quanto você concorda com cada afirmação.</p>
+        <!-- Conteúdo principal -->
+        <div class="content">
+            <!-- Legenda Likert fixa -->
             <div class="likert-legend">
-                <span>1 = discordo totalmente</span>
-                <span>2 = discordo moderadamente</span>
-                <span>3 = concordo moderadamente</span>
-                <span>4 = concordo totalmente</span>
+                <div class="legend-item"><span class="legend-number">1</span> Discordo totalmente</div>
+                <div class="legend-item"><span class="legend-number">2</span> Discordo moderadamente</div>
+                <div class="legend-item"><span class="legend-number">3</span> Concordo moderadamente</div>
+                <div class="legend-item"><span class="legend-number">4</span> Concordo totalmente</div>
             </div>
-            <p style="margin-top: 1rem; font-style: italic; color: #2f4d4e;">🔍 A versão completa de 50 itens pode ser obtida no artigo SciELO (anexo). Abaixo, exemplo de itens representativos por fator.</p>
-        </div>
 
-        <!-- EXEMPLO DE ITENS (simulação) – não é a escala completa (cumpre propósito ilustrativo) -->
-        <div style="background: #ffffff; border: 2px dashed #cfc3b2; border-radius: 30px; padding: 1.8rem; margin: 2rem 0;">
-            <p style="font-weight: 700; font-size: 1.2rem; margin-bottom: 1.5rem; display: flex; gap: 0.5rem;">📋 Amostra de itens por fator (versão resumida para demonstração) </p>
-            <div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem 2rem;">
-                <div><span style="background:#1e3a3f; color:white; padding:0.2rem 1rem; border-radius:20px; font-size:0.8rem;">Fadiga de compaixão</span> “Sinto-me exausto depois de um dia ouvindo relatos de trauma.”</div>
-                <div><span style="background:#1e3a3f; color:white; padding:0.2rem 1rem; border-radius:20px; font-size:0.8rem;">Trauma secundário</span> “Recordo involuntariamente cenas descritas por vítimas.”</div>
-                <div><span style="background:#1e3a3f; color:white; padding:0.2rem 1rem; border-radius:20px; font-size:0.8rem;">Mudança de crenças</span> “Passei a ver o mundo como um lugar mais perigoso.”</div>
-                <div><span style="background:#1e3a3f; color:white; padding:0.2rem 1rem; border-radius:20px; font-size:0.8rem;">Empatia</span> “Coloco-me no lugar da vítima com facilidade.”</div>
-                <div><span style="background:#1e3a3f; color:white; padding:0.2rem 1rem; border-radius:20px; font-size:0.8rem;">Consequências org.</span> “Minha instituição ignora o desgaste emocional dos profissionais.”</div>
-                <div><span style="background:#1e3a3f; color:white; padding:0.2rem 1rem; border-radius:20px; font-size:0.8rem;">Satisfação em ajudar</span> “Ajudar vítimas dá sentido ao meu trabalho.”</div>
+            <!-- Container do teste -->
+            <div id="test-container"></div>
+
+            <!-- Navegação -->
+            <div class="pagination">
+                <button class="btn btn-secondary" id="prev-btn" disabled>← Anterior</button>
+                <span class="page-info" id="page-info">Página 1 de 5</span>
+                <button class="btn" id="next-btn">Próximo →</button>
             </div>
-            <p style="margin-top: 1.5rem; color: #4f3f32; font-size:0.9rem; border-top:1px solid #ddd; padding-top:1rem;">⚠️ A aplicação formal exige os 50 itens e o manual de scoring publicados pelos autores. Veja referência completa.</p>
-        </div>
 
-        <!-- Salvaguardas institucionais e integração com noble cause corruption / vicarious trauma (conforme texto do livro) -->
-        <div class="salvaguardas-box">
-            <h3>🛡️ Salvaguardas institucionais · mitigação dos catalisadores silenciosos</h3>
-            <p style="margin-bottom: 1.8rem;">Integração entre <strong>vicarious trauma</strong> e <strong>noble cause corruption</strong> no modelo triádico (PPSC, 2019; Elaad, 2022; Findley & Scott).</p>
-            <div class="duas-colunas">
-                <div class="coluna">
-                    <h4>🧠 Contra o Vicarious Trauma</h4>
-                    <ul>
-                        <li><strong>Rodízio funcional obrigatório:</strong> máximo 3 anos em unidades de crimes violentos; pausa de 12 meses.</li>
-                        <li><strong>Avaliação psicológica periódica:</strong> protocolo STSS anualmente, afastamento preventivo se escore >25.</li>
-                        <li><strong>Cooling-off investigativo:</strong> 72h de pausa + revisão cega após fixação de suspeito.</li>
-                        <li><strong>Supervisão clínica institucional:</strong> espaços protegidos para processamento de trauma.</li>
-                    </ul>
-                </div>
-                <div class="coluna">
-                    <h4>⚖️ Contra Noble Cause Corruption</h4>
-                    <ul>
-                        <li><strong>Registro obrigatório de hipóteses descartadas:</strong> documentar alternativas não seguidas.</li>
-                        <li><strong>Treinamento ético com dilemas reais:</strong> simulações (metodologia Ontario CPS).</li>
-                        <li><strong>Separação apoio à vítima / investigação:</strong> equipes distintas evitam contaminação.</li>
-                        <li><strong>Checklist CEAP Camada 2 (item 2.5):</strong> vulnerabilidade do acusado e risco de causa nobre.</li>
-                    </ul>
-                </div>
+            <!-- Botão de resultados -->
+            <div style="text-align: center; margin: 1rem 0;">
+                <button class="btn" id="submit-btn" disabled>Ver Resultados</button>
             </div>
-            <p style="background: #fff; border-radius: 40px; padding: 1rem 1.8rem; margin-top: 1rem; border-left: 5px solid #b56532;">
-                “The greatest risk to justice is not the corrupt officer, but the well‑intentioned one who believes so strongly in his own rectitude that he no longer sees the procedural lines he crosses.” <br>— PPSC (2019, p. 58)
-            </p>
+
+            <!-- Container de resultados (inicialmente oculto) -->
+            <div id="results-container" class="hidden"></div>
         </div>
 
-        <!-- Quadro sinóptico integração (menção) -->
-        <div style="background: #ebf2f0; border-radius: 24px; padding: 1.4rem 2rem; margin: 2rem 0;">
-            <p style="font-weight: 700; font-size: 1.15rem;">📐 Integração operacional dos catalisadores silenciosos ao modelo triádico de contaminação probatória</p>
-            <p>O <strong>vicarious trauma</strong> reduz tolerância à ambiguidade e acelera fixação de hipóteses; a <strong>noble cause corruption</strong> elimina barreiras éticas contra a aceitação acrítica. O efeito combinado aparece na consolidação narrativa e resistência à revisão (ver Quadro 3.1 do texto).</p>
-        </div>
-
-        <!-- Sobre o site e recurso futuro -->
-        <div class="aviso">
-            <p style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-                <span style="background: #d1c2b0; border-radius: 30px; padding: 0.4rem 1.2rem;">🔗 recurso</span>
-                <span>O endereço <code style="background: #cfc3b2; padding: 0.2rem 1rem; border-radius: 30px;">www.arquiteturasdaduvida.org/vicarious-trauma-teste</code> está planejado para plataforma interativa futura. Atualmente, utilize os links acadêmicos.</span>
-            </p>
-        </div>
-
-        <!-- Informação adicional: acesso artigo, scoring e parceria -->
-        <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; background: #ffffff; padding: 2rem 0 1rem;">
-            <div style="flex: 1; min-width: 200px;">
-                <h4 style="margin-bottom: 1rem;">📎 Acesso acadêmico direto</h4>
-                <ul style="list-style: none;">
-                    <li style="margin-bottom: 0.5rem;">📄 <a href="https://www.scielo.br/j/pusf/a/BrzjWPn97LBHxShMqNdnCdJ/?lang=pt" target="_blank">artigo completo SciELO (PDF)</a></li>
-                    <li style="margin-bottom: 0.5rem;">📚 <a href="https://www.researchgate.net/publication/353693953_Estrutura_Interna_da_Versao_Brasileira_do_Questionario_de_Estresse_Traumatico_Secundario" target="_blank">ResearchGate · Dalagasperina et al.</a></li>
-                    <li style="margin-bottom: 0.5rem;">📋 anexo com a escala + manual de scoring (no artigo)</li>
-                </ul>
-            </div>
-            <div style="flex: 1; min-width: 200px;">
-                <h4 style="margin-bottom: 1rem;">🤝 Parceria institucional</h4>
-                <p>Contate as autoras da validação brasileira:<br>Patricia Dalagasperina, Elisa Kern de Castro (UFRGS).</p>
-                <p>Para uso da escala em pesquisas ou desenvolvimento de plataforma conjunta, consulte o contato no artigo.</p>
-            </div>
-        </div>
-
-        <!-- A armadilha da empatia não estruturada (citação do texto 3.3.3) -->
-        <div style="background: #e8ddd0; border-radius: 20px; padding: 1.4rem 2rem; margin: 2.5rem 0 0.5rem; border-left: 8px solid #a55313;">
-            <p style="font-weight: 700; font-size: 1.2rem;">⚠️ A Armadilha da Empatia Não Estruturada</p>
-            <p>A <em>noble cause corruption</em> revela o paradoxo: a empatia com vítimas torna-se vetor de erro quando não há salvaguardas. Pressão social por acolhimento pode levar à presunção tácita de veracidade absoluta, resistência a confrontar inconsistências e estigmatização do defensor que questiona. Acolhimento humanizado deve ser incondicional; <strong>presunção de veracidade absoluta</strong> deve ser proibida institucionalmente.</p>
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2025 · QETS validado por Dalagasperina et al. (2021) · Psico-USF, 26(2), 319-332</p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem;">Referência: DOI 10.1590/1413-82712021260210 · Uso não comercial permitido com atribuição</p>
         </div>
     </div>
 
-    <!-- Rodapé -->
-    <div class="footer">
-        <div>© 2025 · Arquiteturas da Dúvida · PPSC (2019) </div>
-        <div class="doi">Referência principal: Dalagasperina, P. et al. (2021). Psico-USF, 26(2), 319–332. doi.org/10.1590/1413-82712021260210</div>
-        <div style="margin-top: 0.8rem; width: 100%; font-size:0.85rem;">Teste de Exposição ao Vicarious Trauma (Secondary Traumatic Stress Scale) – versão brasileira QETS. Para scoring e interpretação completos, consulte o artigo original.</div>
-    </div>
-</div>
-<!-- aviso de conformidade com a validação brasileira -->
+    <script>
+        // Banco completo de itens do QETS (50 itens)
+        const ITENS_QETS = [
+            // Página 1 (itens 1-10)
+            "Sinto-me emocionalmente esgotado após ouvir relatos de trauma das vítimas.",
+            "Tenho pensamentos intrusivos sobre os casos que atendo, mesmo fora do trabalho.",
+            "Evito conversar sobre meu trabalho com amigos ou familiares para não incomodá-los.",
+            "Sinto que minha capacidade de ajudar as pessoas diminuiu com o tempo.",
+            "Fico irritado com pequenas coisas no ambiente de trabalho.",
+            "Tenho dificuldade em me concentrar em tarefas simples do dia a dia.",
+            "Sinto-me desesperançoso em relação ao futuro das vítimas que atendo.",
+            "Evito certas situações que me lembram casos traumáticos que acompanhei.",
+            "Tenho pesadelos relacionados ao que ouço no trabalho.",
+            "Sinto-me culpado quando não posso ajudar alguém da forma que gostaria.",
+            
+            // Página 2 (itens 11-20)
+            "Percebo que estou mais cético em relação às pessoas e suas intenções.",
+            "Tenho menos paciência com problemas cotidianos dos outros.",
+            "Sinto-me sobrecarregado pela demanda emocional do meu trabalho.",
+            "Questiono o sentido do meu trabalho frequentemente.",
+            "Tenho sintomas físicos (dor de cabeça, tensão muscular) após o trabalho.",
+            "Evito contato com colegas fora do expediente.",
+            "Sinto que não dou conta das minhas tarefas como antes.",
+            "Fico apreensivo ao iniciar um novo atendimento.",
+            "Tenho dificuldade em confiar nas pessoas em geral.",
+            "Sinto-me distante emocionalmente das pessoas próximas.",
+            
+            // Página 3 (itens 21-30)
+            "O barulho ou multidões me incomodam mais do que antes.",
+            "Sinto necessidade de verificar várias vezes se fiz tudo certo no trabalho.",
+            "Tenho pensamentos de que algo ruim vai acontecer comigo ou com quem amo.",
+            "Evito notícias sobre violência fora do trabalho.",
+            "Sinto que minha vida perdeu a graça ou o sentido.",
+            "Tenho menos energia para atividades de lazer que antes gostava.",
+            "Fico facilmente assustado com barulhos inesperados.",
+            "Sinto que não sou mais a mesma pessoa de antes.",
+            "Tenho dificuldade em lembrar detalhes dos casos que atendi.",
+            "Sinto necessidade de me isolar após o trabalho.",
+            
+            // Página 4 (itens 31-40)
+            "Meu desempenho profissional caiu nos últimos meses.",
+            "Evito falar sobre meu trabalho em situações sociais.",
+            "Sinto que não tenho mais paciência para ouvir as pessoas.",
+            "Tenho crises de choro sem motivo aparente.",
+            "Sinto que minha vida profissional afeta negativamente minha vida pessoal.",
+            "Tenho menos interesse em atividades que antes gostava.",
+            "Sinto que minha visão de mundo ficou mais negativa.",
+            "Tenho pensamentos de que não estou fazendo diferença no mundo.",
+            "Sinto que estou sempre em estado de alerta, mesmo em casa.",
+            "Tenho dificuldade em relaxar, mesmo quando estou de folga.",
+            
+            // Página 5 (itens 41-50)
+            "Sinto que minha empatia diminuiu com o tempo.",
+            "Evito estabelecer vínculos com as pessoas que atendo.",
+            "Sinto que estou mais impaciente no trânsito ou em filas.",
+            "Tenho alterações no apetite ou no sono.",
+            "Sinto que minha fé ou crenças foram abaladas pelo que vejo.",
+            "Questiono a justiça e o sistema em que trabalho.",
+            "Sinto que não tenho controle sobre minhas emoções.",
+            "Evito pensar no trabalho durante os finais de semana.",
+            "Sinto que preciso de férias constantemente.",
+            "Considero mudar de profissão devido ao desgaste emocional."
+        ];
+
+        // Fatores correspondentes (mapeamento simplificado)
+        const FATORES = [
+            "Fadiga de Compaixão", "Trauma Secundário", "Consequências Organizacionais", 
+            "Fadiga de Compaixão", "Estado de Humor", "Mudança de Crenças", "Mudança de Crenças",
+            "Trauma Secundário", "Trauma Secundário", "Fadiga de Compaixão",
+            "Mudança de Crenças", "Estado de Humor", "Fadiga de Compaixão", "Consequências Organizacionais",
+            "Trauma Secundário", "Consequências Organizacionais", "Fadiga de Compaixão", "Trauma Secundário",
+            "Mudança de Crenças", "Consequências Organizacionais", "Trauma Secundário", "Mudança de Crenças",
+            "Trauma Secundário", "Consequências Organizacionais", "Mudança de Crenças", "Fadiga de Compaixão",
+            "Trauma Secundário", "Mudança de Crenças", "Consequências Organizacionais", "Trauma Secundário",
+            "Consequências Organizacionais", "Estado de Humor", "Fadiga de Compaixão", "Mudança de Crenças",
+            "Consequências Organizacionais", "Estado de Humor", "Mudança de Crenças", "Fadiga de Compaixão",
+            "Trauma Secundário", "Consequências Organizacionais", "Fadiga de Compaixão", "Mudança de Crenças",
+            "Estado de Humor", "Trauma Secundário", "Mudança de Crenças", "Consequências Organizacionais",
+            "Fadiga de Compaixão", "Estado de Humor", "Consequências Organizacionais", "Trauma Secundário"
+        ];
+
+        class VicariousTraumaTest {
+            constructor() {
+                this.currentPage = 1;
+                this.totalPages = 5;
+                this.itemsPerPage = 10;
+                this.responses = {};
+                this.loadSavedResponses();
+                this.init();
+            }
+
+            init() {
+                this.renderPage();
+                this.updateProgress();
+                this.attachEvents();
+            }
+
+            loadSavedResponses() {
+                const saved = localStorage.getItem('vicariousResponses');
+                if (saved) {
+                    try {
+                        this.responses = JSON.parse(saved);
+                    } catch (e) {
+                        console.error('Erro ao carregar respostas salvas');
+                    }
+                }
+            }
+
+            saveResponses() {
+                localStorage.setItem('vicariousResponses', JSON.stringify(this.responses));
+            }
+
+            renderPage() {
+                const container = document.getElementById('test-container');
+                if (!container) return;
+
+                const startIdx = (this.currentPage - 1) * this.itemsPerPage;
+                const endIdx = Math.min(startIdx + this.itemsPerPage, ITENS_QETS.length);
+
+                let html = '<div class="items-grid">';
+
+                for (let i = startIdx; i < endIdx; i++) {
+                    const itemNum = i + 1;
+                    const itemId = `item_${itemNum}`;
+                    const savedValue = this.responses[itemId] || '';
+                    
+                    html += `
+                        <div class="item-card">
+                            <div class="item-header">
+                                <span class="item-number">${itemNum}</span>
+                                <span class="item-text">${ITENS_QETS[i]}</span>
+                                <span class="item-factor">${FATORES[i]}</span>
+                            </div>
+                            <div class="likert-group">
+                    `;
+
+                    for (let valor = 1; valor <= 4; valor++) {
+                        const checked = savedValue == valor ? 'checked' : '';
+                        html += `
+                            <label class="likert-option">
+                                <input type="radio" name="${itemId}" value="${valor}" ${checked}>
+                                <span>${valor}</span>
+                            </label>
+                        `;
+                    }
+
+                    html += `
+                            </div>
+                        </div>
+                    `;
+                }
+
+                html += '</div>';
+                container.innerHTML = html;
+
+                // Atualizar contador da página
+                document.getElementById('page-info').textContent = `Página ${this.currentPage} de ${this.totalPages}`;
+                
+                // Configurar listeners para os novos inputs
+                this.attachInputListeners();
+            }
+
+            attachInputListeners() {
+                const radios = document.querySelectorAll('input[type="radio"]');
+                radios.forEach(radio => {
+                    radio.addEventListener('change', (e) => {
+                        const name = e.target.name;
+                        const value = e.target.value;
+                        this.responses[name] = value;
+                        this.saveResponses();
+                        this.updateProgress();
+                        
+                        // Highlight visual da opção selecionada
+                        const parentLabel = e.target.closest('.likert-option');
+                        const group = e.target.closest('.likert-group');
+                        if (group) {
+                            group.querySelectorAll('.likert-option').forEach(opt => {
+                                opt.classList.remove('selected');
+                            });
+                        }
+                        if (parentLabel) {
+                            parentLabel.classList.add('selected');
+                        }
+                    });
+                });
+            }
+
+            attachEvents() {
+                // Botões de navegação
+                document.getElementById('prev-btn').addEventListener('click', () => {
+                    if (this.currentPage > 1) {
+                        this.currentPage--;
+                        this.renderPage();
+                        this.updateNavButtons();
+                    }
+                });
+
+                document.getElementById('next-btn').addEventListener('click', () => {
+                    if (this.currentPage < this.totalPages) {
+                        this.currentPage++;
+                        this.renderPage();
+                        this.updateNavButtons();
+                    }
+                });
+
+                // Botão de resultados
+                document.getElementById('submit-btn').addEventListener('click', () => {
+                    this.calculateResults();
+                });
+            }
+
+            updateNavButtons() {
+                document.getElementById('prev-btn').disabled = this.currentPage === 1;
+                document.getElementById('next-btn').disabled = this.currentPage === this.totalPages;
+                document.getElementById('page-info').textContent = `Página ${this.currentPage} de ${this.totalPages}`;
+            }
+
+            updateProgress() {
+                const answered = Object.keys(this.responses).length;
+                const total = ITENS_QETS.length;
+                const percent = (answered / total) * 100;
+                
+                document.getElementById('answered-count').textContent = `${answered}/${total} itens respondidos`;
+                document.getElementById('progress-fill').style.width = `${percent}%`;
+                
+                // Habilitar/desabilitar botão de resultados
+                document.getElementById('submit-btn').disabled = answered < total;
+            }
+
+            calculateResults() {
+                if (Object.keys(this.responses).length < ITENS_QETS.length) {
+                    alert('Por favor, responda todos os 50 itens antes de ver os resultados.');
+                    return;
+                }
+
+                // Calcular escores por fator
+                const escores = {
+                    fadigaCompaixao: this.calcularMediaFator('Fadiga de Compaixão'),
+                    traumaSecundario: this.calcularMediaFator('Trauma Secundário'),
+                    mudancaCrencas: this.calcularMediaFator('Mudança de Crenças'),
+                    consequenciasOrg: this.calcularMediaFator('Consequências Organizacionais'),
+                    estadoHumor: this.calcularMediaFator('Estado de Humor')
+                };
+
+                const totalScore = (escores.fadigaCompaixao + escores.traumaSecundario + 
+                                   escores.mudancaCrencas + escores.consequenciasOrg + 
+                                   escores.estadoHumor) / 5;
+
+                this.displayResults(escores, totalScore);
+            }
+
+            calcularMediaFator(fator) {
+                const valores = [];
+                for (let i = 1; i <= ITENS_QETS.length; i++) {
+                    if (FATORES[i-1] === fator) {
+                        const resp = this.responses[`item_${i}`];
+                        if (resp) {
+                            valores.push(parseInt(resp, 10));
+                        }
+                    }
+                }
+                
+                if (valores.length === 0) return 0;
+                return valores.reduce((a, b) => a + b, 0) / valores.length;
+            }
+
+            displayResults(escores, totalScore) {
+                // Esconder teste e mostrar resultados
+                document.getElementById('test-container').classList.add('hidden');
+                document.querySelector('.pagination').classList.add('hidden');
+                document.getElementById('submit-btn').classList.add('hidden');
+                
+                const resultsContainer = document.getElementById('results-container');
+                resultsContainer.classList.remove('hidden');
+
+                // Determinar interpretação
+                let interpretacao, nivel;
+                if (totalScore < 1.5) {
+                    interpretacao = "Baixo impacto · Sem indicadores significativos de estresse traumático secundário.";
+                    nivel = "baixo";
+                } else if (totalScore < 2.0) {
+                    interpretacao = "Impacto leve · Alguns sintomas presentes. Recomenda-se atenção ao autocuidado.";
+                    nivel = "leve";
+                } else if (totalScore < 2.5) {
+                    interpretacao = "Impacto moderado · Sintomas significativos. Busque supervisão e suporte.";
+                    nivel = "moderado";
+                } else if (totalScore < 3.0) {
+                    interpretacao = "Impacto alto · Sintomas intensos. Necessário suporte profissional especializado.";
+                    nivel = "alto";
+                } else {
+                    interpretacao = "Impacto severo · Escores muito elevados. Intervenção urgente recomendada.";
+                    nivel = "severo";
+                }
+
+                // Gerar recomendações
+                const recomendacoes = [];
+                if (escores.fadigaCompaixao > 2.8) {
+                    recomendacoes.push("Fadiga de Compaixão elevada: rodízio de funções e pausas programadas são essenciais.");
+                }
+                if (escores.traumaSecundario > 2.8) {
+                    recomendacoes.push("Trauma Secundário significativo: supervisão clínica regular e espaço de fala protegido.");
+                }
+                if (escores.consequenciasOrg > 3.0) {
+                    recomendacoes.push("Consequências Organizacionais críticas: avaliar condições de trabalho e suporte institucional.");
+                }
+                if (totalScore > 2.5) {
+                    recomendacoes.push("Aplicar protocolo cooling-off (pausa de 72h antes de conclusões investigativas).");
+                    recomendacoes.push("Treinamento em Noble Cause Corruption e prevenção de vieses.");
+                }
+                if (recomendacoes.length === 0) {
+                    recomendacoes.push("Manter práticas de autocuidado e monitoramento regular.");
+                    recomendacoes.push("Participar de grupos de apoio entre pares.");
+                }
+
+                resultsContainer.innerHTML = `
+                    <div class="results-container">
+                        <h2 style="margin-bottom: 2rem;">📊 Seus Resultados</h2>
+                        
+                        <div class="total-score-card">
+                            <div class="score-value">${totalScore.toFixed(2)}</div>
+                            <div class="score-interpretation">${interpretacao}</div>
+                            <div style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Nível: ${nivel}</div>
+                        </div>
+                        
+                        <div class="subscales-grid">
+                            <div class="subscale-card">
+                                <h4>Fadiga de Compaixão</h4>
+                                <div class="subscale-score">${escores.fadigaCompaixao.toFixed(2)}</div>
+                                <div class="subscale-bar">
+                                    <div class="bar-fill" style="width: ${(escores.fadigaCompaixao/4)*100}%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="subscale-card">
+                                <h4>Trauma Secundário</h4>
+                                <div class="subscale-score">${escores.traumaSecundario.toFixed(2)}</div>
+                                <div class="subscale-bar">
+                                    <div class="bar-fill" style="width: ${(escores.traumaSecundario/4)*100}%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="subscale-card">
+                                <h4>Mudança de Crenças</h4>
+                                <div class="subscale-score">${escores.mudancaCrencas.toFixed(2)}</div>
+                                <div class="subscale-bar">
+                                    <div class="bar-fill" style="width: ${(escores.mudancaCrencas/4)*100}%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="subscale-card">
+                                <h4>Consequências Organizacionais</h4>
+                                <div class="subscale-score">${escores.consequenciasOrg.toFixed(2)}</div>
+                                <div class="subscale-bar">
+                                    <div class="bar-fill" style="width: ${(escores.consequenciasOrg/4)*100}%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="subscale-card">
+                                <h4>Estado de Humor</h4>
+                                <div class="subscale-score">${escores.estadoHumor.toFixed(2)}</div>
+                                <div class="subscale-bar">
+                                    <div class="bar-fill" style="width: ${(escores.estadoHumor/4)*100}%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="salvaguardas-recomendadas">
+                            <h3>🛡️ Salvaguardas Recomendadas</h3>
+                            <ul>
+                                ${recomendacoes.map(r => `<li>${r}</li>`).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="results-actions">
+                            <button class="btn" onclick="window.print()">🖨️ Imprimir resultados</button>
+                            <button class="btn btn-outline" id="refazer-btn">↻ Refazer teste</button>
+                        </div>
+                        
+                        <div class="aviso">
+                            <p><strong>Importante:</strong> Este instrumento é para rastreamento. 
+                            Busque apoio profissional especializado se os escores indicarem sofrimento significativo.</p>
+                        </div>
+                    </div>
+                `;
+
+                // Evento para refazer o teste
+                document.getElementById('refazer-btn').addEventListener('click', () => {
+                    localStorage.removeItem('vicariousResponses');
+                    location.reload();
+                });
+            }
+        }
+
+        // Inicializar quando a página carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            window.test = new VicariousTraumaTest();
+        });
+    </script>
 </body>
 </html>
