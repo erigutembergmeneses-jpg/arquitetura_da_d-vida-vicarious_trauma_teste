@@ -1,381 +1,475 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arquiteturas da Dúvida · como redesenhar o sistema penal contra os vieses da mente humana</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Exposição ao Vicarious Trauma (QETS) · Arquiteturas da Dúvida</title>
+    <!-- Fontes e estilos base -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-      background-color: #f4f2ef;
-      color: #2d2a27;
-      line-height: 1.6;
-    }
+        body {
+            background: #f5f3f0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.5;
+            color: #1e1b1a;
+            padding: 2rem 1rem;
+        }
 
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 2rem 2rem;
-    }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15), 0 8px 20px -8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid #eae2d7;
+        }
 
-    /* tipografia */
-    h1 {
-      font-size: 3.2rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      text-transform: uppercase;
-      color: #1e2b34;
-    }
+        .header {
+            background: #1e3a3f;
+            background: linear-gradient(145deg, #1a3338 0%, #1d464d 100%);
+            color: white;
+            padding: 2.5rem 3rem;
+            border-bottom: 4px solid #b98b5f;
+        }
 
-    h2 {
-      font-size: 2rem;
-      font-weight: 500;
-      margin: 2.5rem 0 1rem;
-      border-left: 6px solid #b3855a;
-      padding-left: 1.2rem;
-      color: #1e3b4a;
-    }
+        .header h1 {
+            font-weight: 600;
+            font-size: 2.4rem;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
 
-    h3 {
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin: 1.8rem 0 1rem;
-      color: #4d443c;
-    }
+        .header h1 small {
+            font-size: 1rem;
+            font-weight: 400;
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+            margin-left: 1rem;
+            vertical-align: middle;
+            border: 1px solid rgba(255, 215, 170, 0.3);
+        }
 
-    p {
-      margin-bottom: 1.25rem;
-      font-size: 1.1rem;
-      text-align: justify;
-    }
+        .header .subhead {
+            font-size: 1.1rem;
+            color: #e0d6cd;
+            max-width: 70%;
+            border-left: 3px solid #b98b5f;
+            padding-left: 1.5rem;
+            margin-top: 0.75rem;
+        }
 
-    a {
-      color: #8a6e4e;
-      text-decoration: none;
-      border-bottom: 1px solid #d4c9bc;
-    }
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 1.8rem;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            background: rgba(0,0,0,0.2);
+            padding: 1rem 1.8rem;
+            border-radius: 60px;
+            width: fit-content;
+            backdrop-filter: blur(2px);
+        }
 
-    a:hover {
-      color: #4f3c2b;
-      border-bottom: 2px solid #b3855a;
-    }
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .badge::before {
+            content: "✓";
+            background: #b98b5f;
+            color: #1a3338;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            border-radius: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
 
-    /* cabeçalho impactante */
-    .hero {
-      background: #1c2b33;
-      background-image: radial-gradient(circle at 10% 30%, #2a404d 0%, #0f1e26 100%);
-      color: #f0ebe4;
-      padding: 4rem 2rem;
-      border-bottom: 8px solid #b3855a;
-    }
+        .content {
+            padding: 2.5rem 3rem;
+        }
 
-    .hero-content {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
+        .info-card {
+            background: #f8f6f2;
+            border-radius: 24px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.8rem;
+            border: 1px solid #e0d7cd;
+            box-shadow: inset 0 1px 4px rgba(255, 255, 255, 0.8), 0 6px 12px -12px rgba(0,0,0,0.3);
+        }
 
-    .pretitle {
-      display: inline-block;
-      font-size: 0.9rem;
-      font-weight: 400;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      color: #c7b29b;
-      margin-bottom: 1rem;
-      border-left: 3px solid #b3855a;
-      padding-left: 1rem;
-    }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+            margin: 1.5rem 0 0.5rem;
+        }
 
-    h1 span.doubt {
-      font-weight: 300;
-      color: #d4b48c;
-      display: block;
-      font-size: 2.8rem;
-      text-transform: none;
-      letter-spacing: -0.02em;
-    }
+        .info-item {
+            border-left: 4px solid #b98b5f;
+            padding-left: 1.2rem;
+        }
+        .info-item strong {
+            font-weight: 600;
+            color: #1e3a3f;
+            display: block;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .info-item p {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-top: 0.25rem;
+        }
 
-    .subtitle {
-      font-size: 1.3rem;
-      margin: 1.5rem 0 0.5rem;
-      max-width: 700px;
-      font-style: italic;
-      color: #c7bcaf;
-    }
+        .ref-link {
+            background: #e8e2d8;
+            border-radius: 18px;
+            padding: 0.8rem 1.5rem;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            border: 1px solid #cab99f;
+            margin-top: 1rem;
+        }
+        .ref-link a {
+            color: #1e3a3f;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px dashed #6f5e4e;
+        }
+        .ref-link a:hover {
+            border-bottom: 2px solid #b56532;
+        }
 
-    .meta-line {
-      margin-top: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      font-size: 0.95rem;
-      color: #b0a392;
-    }
+        .scale-section {
+            margin: 2.8rem 0 2rem;
+        }
 
-    /* cartões de destaque */
-    .card-system {
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 2rem;
-      margin: 2.5rem 0;
-      box-shadow: 0 12px 28px -8px rgba(0,0,0,0.1);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      border: 1px solid #e5dbd1;
-    }
+        .scale-section h2 {
+            font-size: 1.9rem;
+            font-weight: 550;
+            letter-spacing: -0.01em;
+            border-bottom: 2px solid #e0d7cd;
+            padding-bottom: 0.6rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .scale-section h2 span {
+            background: #1e3a3f;
+            color: white;
+            font-size: 1rem;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-weight: 500;
+        }
 
-    .card-s1, .card-s2 {
-      flex: 1 1 250px;
-      padding: 1.8rem 1.5rem;
-      border-radius: 16px;
-      background: #fbf9f7;
-    }
+        .instrucoes {
+            background: #eef4f2;
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 2.5rem;
+            border-left: 6px solid #1e3a3f;
+        }
+        .instrucoes p {
+            margin-bottom: 0.5rem;
+        }
+        .likert-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 2rem;
+            margin-top: 1rem;
+            background: #fff6ea;
+            padding: 1rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 500;
+        }
 
-    .card-s1 {
-      border-top: 6px solid #bb5b4a;
-    }
+        .tabela-fatores {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04);
+            margin: 2rem 0 2.5rem;
+        }
+        .tabela-fatores th {
+            background: #2b4a50;
+            color: white;
+            font-weight: 600;
+            padding: 1rem 1rem;
+            text-align: left;
+        }
+        .tabela-fatores td {
+            padding: 0.9rem 1rem;
+            border-bottom: 1px solid #e6ddd2;
+            background: #fefcf9;
+        }
+        .tabela-fatores tr:last-child td {
+            border-bottom: none;
+        }
+        .fator-nome {
+            font-weight: 600;
+            color: #1a3338;
+        }
 
-    .card-s2 {
-      border-top: 6px solid #2d7a70;
-    }
+        .salvaguardas-box {
+            background: #f4efe8;
+            border-radius: 24px;
+            padding: 2rem;
+            margin: 2.8rem 0 1rem;
+            border: 1px solid #d9cdbc;
+        }
+        .salvaguardas-box h3 {
+            font-size: 1.6rem;
+            font-weight: 550;
+            margin-bottom: 1rem;
+        }
+        .duas-colunas {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        .coluna {
+            background: rgba(255,255,255,0.6);
+            padding: 1.5rem;
+            border-radius: 20px;
+        }
+        .coluna h4 {
+            font-weight: 650;
+            color: #2b4a50;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #b98b5f;
+            padding-bottom: 0.4rem;
+        }
+        .coluna ul {
+            list-style: none;
+        }
+        .coluna li {
+            margin-bottom: 1.1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .coluna li::before {
+            content: "▹";
+            color: #b98b5f;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
 
-    .card-s1 h4, .card-s2 h4 {
-      font-size: 1.8rem;
-      font-weight: 300;
-      margin-bottom: 1rem;
-    }
+        .footer {
+            background: #e3ddd3;
+            padding: 2rem 3rem;
+            color: #2e2a26;
+            font-size: 0.95rem;
+            border-top: 1px solid #cab99f;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer .doi {
+            font-family: 'JetBrains Mono', monospace;
+            background: #d3caba;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+        }
 
-    .card-s1 h4 span, .card-s2 h4 span {
-      font-weight: 700;
-    }
+        .aviso {
+            font-size: 0.9rem;
+            color: #3f3a35;
+            background: #f9e9da;
+            padding: 1rem 2rem;
+            border-radius: 16px;
+            margin-top: 2rem;
+        }
 
-    .tag {
-      background: #e7dfd6;
-      color: #3a3530;
-      font-size: 0.75rem;
-      padding: 0.3rem 0.9rem;
-      border-radius: 30px;
-      display: inline-block;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    /* caixa de ficção */
-    .fiction-box {
-      background-color: #eae3db;
-      border-radius: 24px;
-      padding: 2rem 2rem 1.5rem;
-      margin: 2.5rem 0;
-      border: 1px solid #cdbfb0;
-      box-shadow: inset 0 0 0 1px #f9f5f0;
-    }
-
-    .fiction-label {
-      display: inline-block;
-      background: #b3855a;
-      color: white;
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 0.25rem 1rem;
-      border-radius: 30px;
-      margin-bottom: 1.2rem;
-    }
-
-    .story-time {
-      font-family: 'Courier New', monospace;
-      color: #4e4b48;
-      border-left: 4px solid #b3855a;
-      padding-left: 1.8rem;
-      margin: 1.5rem 0;
-    }
-
-    .story-time p {
-      margin-bottom: 1rem;
-      font-size: 1.05rem;
-    }
-
-    .quote {
-      font-style: italic;
-      font-size: 1.2rem;
-      background: #d7cdc0;
-      padding: 1.5rem;
-      border-radius: 12px;
-      color: #1a1a1a;
-      margin: 1.8rem 0;
-    }
-
-    /* bloco de arquitetura */
-    .architecture-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-
-    .arch-item {
-      flex: 1 1 200px;
-      background: #d9d0c4;
-      padding: 1.5rem;
-      border-radius: 32px 32px 32px 8px;
-      background: #ffffffd6;
-      border: 1px solid #cec1b2;
-    }
-
-    .arch-item strong {
-      color: #b3855a;
-      font-size: 1.2rem;
-    }
-
-    /* rodapé e readme */
-    .footer-block {
-      border-top: 2px solid #d6cbbc;
-      margin-top: 4rem;
-      padding: 2rem 0 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .readme-block {
-      background: #1e2b34;
-      color: #e0d9cf;
-      padding: 1.8rem;
-      border-radius: 20px;
-      margin-top: 2rem;
-    }
-
-    .readme-block pre {
-      background: #2c3e48;
-      padding: 1.2rem;
-      border-radius: 12px;
-      color: #d9d2c5;
-      font-size: 0.85rem;
-      overflow-x: auto;
-      font-family: 'Fira Code', monospace;
-      border: 1px solid #4a5c68;
-    }
-
-    @media (max-width: 650px) {
-      h1 { font-size: 2.2rem; }
-      h1 span.doubt { font-size: 1.8rem; }
-      .container { padding: 1.5rem; }
-    }
-  </style>
+        @media (max-width: 700px) {
+            .header, .content, .footer { padding: 1.8rem; }
+            .header h1 { font-size: 1.9rem; }
+            .header .subhead { max-width: 100%; }
+            .duas-colunas { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-  <div class="hero">
-    <div class="hero-content">
-      <div class="pretitle">psicologia cognitiva · projeto de justiça</div>
-      <h1>ARQUITETURAS <span class="doubt">DA DÚVIDA</span></h1>
-      <div class="subtitle">Como redesenhar o sistema penal contra os vieses da mente humana</div>
-      <div class="meta-line">
-        <span>🔍 baseado em Kahneman, Tversky & pesquisa forense</span>
-        <span>⚖️ 14 casos reais + 1 ilustração ficcional</span>
-      </div>
-    </div>
-  </div>
-
-  <main class="container">
-    <!-- CAPÍTULO 1.1 – ILUSTRAÇÃO FICCIONAL (AGORA COM TÍTULO CORRETO) -->
-    <h2>1.1 · A armadilha do primeiro olhar</h2>
-    <div class="fiction-box">
-      <span class="fiction-label">cenário verossímil · ilustração didática</span>
-      <p>Eram 3h17 da madrugada de 14 de março de 2019 quando o delegado plantonista da 14ª DP/RJ recebeu a notícia: corpo feminino encontrado carbonizado em via pública na Zona Norte do Rio. Ao chegar ao local, viu o que seus olhos treinados, após quinze anos de carreira, imediatamente catalogaram: mulher jovem, vestígios de violência sexual, sinais de estrangulamento prévio à queima. O marido, um motorista de aplicativo de 32 anos, já estava na delegacia, trazido por populares que o viram discutindo com a vítima horas antes. Ao ser ouvido, gaguejou, evitou contato visual e apresentou arranhões nos braços.</p>
-      <div class="story-time">
-        <p style="font-weight: 600;">“É ele”, pensou o delegado. “Clássico feminicídio seguido de ocultação de cadáver.”</p>
-      </div>
-      <p>Nas 72 horas seguintes, a investigação seguiu um script previsível: busca de provas que confirmassem a suspeita inicial — busca e apreensão na residência do casal, análise de histórico de violência doméstica — e negligência sistemática de linhas alternativas. Não houve perícia no celular da vítima para verificar contatos recentes. Não se investigou o paradeiro de um ex-namorado que ameaçara a mulher semanas antes. O marido foi indiciado por feminicídio qualificado. A denúncia foi oferecida em dezoito dias, recorde para a unidade.</p>
-      <p>Sete meses depois, o DNA coletado sob as unhas da vítima identificou outro homem: um vizinho que confessou o crime após ser confrontado com a prova genética. O marido foi absolvido. O delegado, ao ser questionado internamente sobre o erro, respondeu com honestidade desconcertante: <em>“Naquele momento, tudo indicava que era ele. O comportamento, o histórico, a cena do crime... Parecia óbvio.”</em></p>
+<div class="container">
+    <div class="header">
+        <h1>Teste de Exposição ao Vicarious Trauma <small>QETS</small></h1>
+        <div class="subhead">Questionário de Estresse Traumático Secundário · versão brasileira validada (Dalagasperina et al., 2021)</div>
+        <div class="badge-container">
+            <span class="badge">50 itens · 4 escalas</span>
+            <span class="badge">12 fatores</span>
+            <span class="badge">α de Cronbach = 0,91</span>
+            <span class="badge">amostra Brasil n=624</span>
+        </div>
     </div>
 
-    <!-- TRANSIÇÃO: SISTEMA 1 / SISTEMA 2 -->
-    <div class="quote">
-      “Essa obviedade enganosa é a assinatura do <strong>Sistema 1</strong> — e a origem silenciosa de incontáveis erros judiciais.”
+    <div class="content">
+        <!-- Informação de validação e referência -->
+        <div class="info-card">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start;">
+                <div>
+                    <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.8rem;">📘 Escala validada no Brasil</h3>
+                    <p><strong>QETS</strong> (Questionário de Estresse Traumático Secundário) – adaptação e evidências psicométricas.</p>
+                </div>
+                <div class="ref-link">
+                    <span>📄 SciELO</span>
+                    <a href="https://www.scielo.br/j/pusf/a/BrzjWPn97LBHxShMqNdnCdJ/?lang=pt" target="_blank">psicousf v.26 n.2 2021</a>
+                </div>
+            </div>
+            <div class="info-grid">
+                <div class="info-item"><strong>Autores validação</strong> Dalagasperina, Castro, Cruz, Pereira & Jiménez</div>
+                <div class="info-item"><strong>Publicação</strong> Psico-USF, 26(2), 319–332</div>
+                <div class="info-item"><strong>Estrutura</strong> 50 itens · Likert 1–4</div>
+                <div class="info-item"><strong>Consistência</strong> α = 0,91 (excelente)</div>
+            </div>
+            <div style="margin-top: 1rem; background: #fff7ea; border-radius: 40px; padding: 0.7rem 1.5rem;">
+                <span style="font-weight:600;">⚖️ Uso livre para fins acadêmicos e avaliativos · citar fonte original ·  </span>
+                <a href="https://www.researchgate.net/publication/353693953_Estrutura_Interna_da_Versao_Brasileira_do_Questionario_de_Estresse_Traumatico_Secundario" target="_blank" style="text-decoration:underline;">ResearchGate</a>
+            </div>
+        </div>
+
+        <!-- Características da escala (tabela de fatores) -->
+        <div class="scale-section">
+            <h2>🧩 12 fatores · 4 escalas <span>versão brasileira</span></h2>
+            <table class="tabela-fatores">
+                <thead><tr><th>Escala</th><th>Fatores</th></tr></thead>
+                <tbody>
+                    <tr><td>Antecedentes</td><td><span class="fator-nome">Desafio, Carga Horária, Empatia, Tipo de Tarefa, Pressão Social</span></td></tr>
+                    <tr><td>Síndrome de Trauma Secundário</td><td><span class="fator-nome">Fadiga de Compaixão, Trauma Secundário, Mudança de Crenças</span></td></tr>
+                    <tr><td>Personalidade</td><td><span class="fator-nome">Compreensão, Satisfação em Ajudar, Estado de Humor</span></td></tr>
+                    <tr><td>Consequências</td><td><span class="fator-nome">Consequências Organizacionais</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- INSTRUÇÕES E LIKERT -->
+        <div class="instrucoes">
+            <p style="font-weight: 600; font-size: 1.15rem;">✎ Instruções de preenchimento</p>
+            <p>Considere sua atuação profissional com vítimas de violência, trauma ou situações de alta carga emocional. Indique o quanto você concorda com cada afirmação.</p>
+            <div class="likert-legend">
+                <span>1 = discordo totalmente</span>
+                <span>2 = discordo moderadamente</span>
+                <span>3 = concordo moderadamente</span>
+                <span>4 = concordo totalmente</span>
+            </div>
+            <p style="margin-top: 1rem; font-style: italic; color: #2f4d4e;">🔍 A versão completa de 50 itens pode ser obtida no artigo SciELO (anexo). Abaixo, exemplo de itens representativos por fator.</p>
+        </div>
+
+        <!-- EXEMPLO DE ITENS (simulação) – não é a escala completa (cumpre propósito ilustrativo) -->
+        <div style="background: #ffffff; border: 2px dashed #cfc3b2; border-radius: 30px; padding: 1.8rem; margin: 2rem 0;">
+            <p style="font-weight: 700; font-size: 1.2rem; margin-bottom: 1.5rem; display: flex; gap: 0.5rem;">📋 Amostra de itens por fator (versão resumida para demonstração) </p>
+            <div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem 2rem;">
+                <div><span style="background:#1e3a3f; color:white; padding:0.2rem 1rem; border-radius:20px; font-size:0.8rem;">Fadiga de compaixão</span> “Sinto-me exausto depois de um dia ouvindo relatos de trauma.”</div>
+                <div><span style="background:#1e3a3f; color:white; padding:0.2rem 1rem; border-radius:20px; font-size:0.8rem;">Trauma secundário</span> “Recordo involuntariamente cenas descritas por vítimas.”</div>
+                <div><span style="background:#1e3a3f; color:white; padding:0.2rem 1rem; border-radius:20px; font-size:0.8rem;">Mudança de crenças</span> “Passei a ver o mundo como um lugar mais perigoso.”</div>
+                <div><span style="background:#1e3a3f; color:white; padding:0.2rem 1rem; border-radius:20px; font-size:0.8rem;">Empatia</span> “Coloco-me no lugar da vítima com facilidade.”</div>
+                <div><span style="background:#1e3a3f; color:white; padding:0.2rem 1rem; border-radius:20px; font-size:0.8rem;">Consequências org.</span> “Minha instituição ignora o desgaste emocional dos profissionais.”</div>
+                <div><span style="background:#1e3a3f; color:white; padding:0.2rem 1rem; border-radius:20px; font-size:0.8rem;">Satisfação em ajudar</span> “Ajudar vítimas dá sentido ao meu trabalho.”</div>
+            </div>
+            <p style="margin-top: 1.5rem; color: #4f3f32; font-size:0.9rem; border-top:1px solid #ddd; padding-top:1rem;">⚠️ A aplicação formal exige os 50 itens e o manual de scoring publicados pelos autores. Veja referência completa.</p>
+        </div>
+
+        <!-- Salvaguardas institucionais e integração com noble cause corruption / vicarious trauma (conforme texto do livro) -->
+        <div class="salvaguardas-box">
+            <h3>🛡️ Salvaguardas institucionais · mitigação dos catalisadores silenciosos</h3>
+            <p style="margin-bottom: 1.8rem;">Integração entre <strong>vicarious trauma</strong> e <strong>noble cause corruption</strong> no modelo triádico (PPSC, 2019; Elaad, 2022; Findley & Scott).</p>
+            <div class="duas-colunas">
+                <div class="coluna">
+                    <h4>🧠 Contra o Vicarious Trauma</h4>
+                    <ul>
+                        <li><strong>Rodízio funcional obrigatório:</strong> máximo 3 anos em unidades de crimes violentos; pausa de 12 meses.</li>
+                        <li><strong>Avaliação psicológica periódica:</strong> protocolo STSS anualmente, afastamento preventivo se escore >25.</li>
+                        <li><strong>Cooling-off investigativo:</strong> 72h de pausa + revisão cega após fixação de suspeito.</li>
+                        <li><strong>Supervisão clínica institucional:</strong> espaços protegidos para processamento de trauma.</li>
+                    </ul>
+                </div>
+                <div class="coluna">
+                    <h4>⚖️ Contra Noble Cause Corruption</h4>
+                    <ul>
+                        <li><strong>Registro obrigatório de hipóteses descartadas:</strong> documentar alternativas não seguidas.</li>
+                        <li><strong>Treinamento ético com dilemas reais:</strong> simulações (metodologia Ontario CPS).</li>
+                        <li><strong>Separação apoio à vítima / investigação:</strong> equipes distintas evitam contaminação.</li>
+                        <li><strong>Checklist CEAP Camada 2 (item 2.5):</strong> vulnerabilidade do acusado e risco de causa nobre.</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="background: #fff; border-radius: 40px; padding: 1rem 1.8rem; margin-top: 1rem; border-left: 5px solid #b56532;">
+                “The greatest risk to justice is not the corrupt officer, but the well‑intentioned one who believes so strongly in his own rectitude that he no longer sees the procedural lines he crosses.” <br>— PPSC (2019, p. 58)
+            </p>
+        </div>
+
+        <!-- Quadro sinóptico integração (menção) -->
+        <div style="background: #ebf2f0; border-radius: 24px; padding: 1.4rem 2rem; margin: 2rem 0;">
+            <p style="font-weight: 700; font-size: 1.15rem;">📐 Integração operacional dos catalisadores silenciosos ao modelo triádico de contaminação probatória</p>
+            <p>O <strong>vicarious trauma</strong> reduz tolerância à ambiguidade e acelera fixação de hipóteses; a <strong>noble cause corruption</strong> elimina barreiras éticas contra a aceitação acrítica. O efeito combinado aparece na consolidação narrativa e resistência à revisão (ver Quadro 3.1 do texto).</p>
+        </div>
+
+        <!-- Sobre o site e recurso futuro -->
+        <div class="aviso">
+            <p style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                <span style="background: #d1c2b0; border-radius: 30px; padding: 0.4rem 1.2rem;">🔗 recurso</span>
+                <span>O endereço <code style="background: #cfc3b2; padding: 0.2rem 1rem; border-radius: 30px;">www.arquiteturasdaduvida.org/vicarious-trauma-teste</code> está planejado para plataforma interativa futura. Atualmente, utilize os links acadêmicos.</span>
+            </p>
+        </div>
+
+        <!-- Informação adicional: acesso artigo, scoring e parceria -->
+        <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; background: #ffffff; padding: 2rem 0 1rem;">
+            <div style="flex: 1; min-width: 200px;">
+                <h4 style="margin-bottom: 1rem;">📎 Acesso acadêmico direto</h4>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 0.5rem;">📄 <a href="https://www.scielo.br/j/pusf/a/BrzjWPn97LBHxShMqNdnCdJ/?lang=pt" target="_blank">artigo completo SciELO (PDF)</a></li>
+                    <li style="margin-bottom: 0.5rem;">📚 <a href="https://www.researchgate.net/publication/353693953_Estrutura_Interna_da_Versao_Brasileira_do_Questionario_de_Estresse_Traumatico_Secundario" target="_blank">ResearchGate · Dalagasperina et al.</a></li>
+                    <li style="margin-bottom: 0.5rem;">📋 anexo com a escala + manual de scoring (no artigo)</li>
+                </ul>
+            </div>
+            <div style="flex: 1; min-width: 200px;">
+                <h4 style="margin-bottom: 1rem;">🤝 Parceria institucional</h4>
+                <p>Contate as autoras da validação brasileira:<br>Patricia Dalagasperina, Elisa Kern de Castro (UFRGS).</p>
+                <p>Para uso da escala em pesquisas ou desenvolvimento de plataforma conjunta, consulte o contato no artigo.</p>
+            </div>
+        </div>
+
+        <!-- A armadilha da empatia não estruturada (citação do texto 3.3.3) -->
+        <div style="background: #e8ddd0; border-radius: 20px; padding: 1.4rem 2rem; margin: 2.5rem 0 0.5rem; border-left: 8px solid #a55313;">
+            <p style="font-weight: 700; font-size: 1.2rem;">⚠️ A Armadilha da Empatia Não Estruturada</p>
+            <p>A <em>noble cause corruption</em> revela o paradoxo: a empatia com vítimas torna-se vetor de erro quando não há salvaguardas. Pressão social por acolhimento pode levar à presunção tácita de veracidade absoluta, resistência a confrontar inconsistências e estigmatização do defensor que questiona. Acolhimento humanizado deve ser incondicional; <strong>presunção de veracidade absoluta</strong> deve ser proibida institucionalmente.</p>
+        </div>
     </div>
 
-    <p>Esta narrativa — ainda que <strong>fictícia</strong> — ilustra um fenômeno real e amplamente documentado: a tendência do cérebro humano de buscar confirmações para a primeira impressão, em vez de testar hipóteses alternativas. A história poderia ter acontecido em qualquer distrito policial, com qualquer delegado, sob a pressão cotidiana da investigação criminal. E é justamente por sua verossimilhança que nos serve como ponto de partida para compreender um dos maiores desafios da atividade judiciária: a armadilha do primeiro olhar.</p>
-
-    <!-- SISTEMA 1/2 EXPLICADO COM CARDS -->
-    <div class="card-system">
-      <div class="card-s1">
-        <h4><span>Sistema</span> 1</h4>
-        <ul style="list-style: none; margin-top: 1rem;">
-          <li>⚡ automático / intuitivo</li>
-          <li>⚡ associações rápidas</li>
-          <li>⚡ opera com pouca energia</li>
-          <li>⚡ certeza subjetiva</li>
-          <li style="color: #bb5b4a; font-weight: 500;">⇢ viés de confirmação</li>
-        </ul>
-      </div>
-      <div class="card-s2">
-        <h4><span>Sistema</span> 2</h4>
-        <ul style="list-style: none; margin-top: 1rem;">
-          <li>🐢 deliberado / analítico</li>
-          <li>🐢 testa hipóteses</li>
-          <li>🐢 exige esforço e tempo</li>
-          <li>🐢 ceticismo metódico</li>
-          <li style="color: #2d7a70; font-weight: 500;">⇢ correção de rota</li>
-        </ul>
-      </div>
+    <!-- Rodapé -->
+    <div class="footer">
+        <div>© 2025 · Arquiteturas da Dúvida · PPSC (2019) </div>
+        <div class="doi">Referência principal: Dalagasperina, P. et al. (2021). Psico-USF, 26(2), 319–332. doi.org/10.1590/1413-82712021260210</div>
+        <div style="margin-top: 0.8rem; width: 100%; font-size:0.85rem;">Teste de Exposição ao Vicarious Trauma (Secondary Traumatic Stress Scale) – versão brasileira QETS. Para scoring e interpretação completos, consulte o artigo original.</div>
     </div>
-
-    <!-- CONEXÃO COM O TEMA DO LIVRO -->
-    <h2>arquitetar a dúvida</h2>
-    <p>O caso do delegado (embora imaginário) carrega os elementos típicos da heurística de ancoragem: um profissional experiente, uma cena que "parece óbvia", a pressa em confirmar a primeira suspeita. A obra <strong>ARQUITETURAS DA DÚVIDA</strong> propõe que não basta apontar os vieses — é preciso <em>redesenhar</em> os processos, os formulários, as rotinas e até a arquitetura física das delegacias para que o Sistema 2 seja acionado antes que o dano aconteça. A "dúvida metódica" precisa estar incorporada no sistema, não apenas na mente dos agentes.</p>
-
-    <!-- PRINCÍPIOS DE REDESENHO -->
-    <h3>contra-medidas institucionais</h3>
-    <div class="architecture-grid">
-      <div class="arch-item"><strong>checklists</strong> · como na aviação, para interromper o automático</div>
-      <div class="arch-item"><strong>rotação de olhares</strong> · segunda opinião obrigatória</div>
-      <div class="arch-item"><strong>linhas alternativas</strong> · um investigador dedicado a falsificar a hipótese principal</div>
-      <div class="arch-item"><strong>cegos à acusação</strong> · separar quem coleta prova de quem investiga</div>
-    </div>
-
-    <!-- NOTA SOBRE A FICÇÃO (reforço) -->
-    <h2>por que um caso fictício?</h2>
-    <p>O leitor atento notou: o caso do delegado e do motorista de aplicativo <strong>não é real</strong>. Não há registros na 14ª DP/RJ, nem na data indicada, de um erro com essas características. A narrativa foi construída como uma <em>ilustração didática</em>, um cenário verossímil que reúne, em poucos parágrafos, os elementos clássicos do viés de confirmação: a força da primeira evidência, a negligência de linhas alternativas, a confiança excessiva na intuição. Se parece real para você, é porque esses padrões se repetem na prática, ainda que os nomes e lugares sejam inventados.</p>
-    <p>Ao deixar explícito seu caráter fictício, preservamos a honestidade com o leitor e evitamos a propagação de um “falso caso real”. A verdade dos fatos reais é tratada em outros capítulos com a devida referência; aqui, a ficção serve à reflexão sobre <strong>arquiteturas da dúvida</strong>.</p>
-
-    <!-- rodapé com README.md -->
-    <div class="footer-block">
-      <div style="font-weight: 300;">ARQUITETURAS DA DÚVIDA · livro em construção</div>
-      <div>
-        <a href="#" style="margin-right: 1.2rem;">índice</a>
-        <a href="https://github.com/seu-usuario/arquiteturas-duvida" target="_blank">github</a>
-      </div>
-    </div>
-
-    <!-- bloco README (representação) -->
-    <div class="readme-block">
-      <p style="margin-bottom: 0.5rem; font-weight: 500; letter-spacing: 1px;">📄 README.md (repositório)</p>
-      <pre>
-# ARQUITETURAS DA DÚVIDA
-**Como redesenhar o sistema penal contra os vieses da mente humana**
-
-Repositório oficial do livro. Contém:
-- `index.html` – página de apresentação e trecho 1.1
-- `/capitulos` – rascunhos e ilustrações
-- `/referencias` – base bibliográfica (Kahneman, etc.)
-
-## Sobre a ilustração 1.1
-O caso do delegado da 14ª DP/RJ (corpo carbonizado, marido acusado) é **completamente fictício**, criado para demonstrar a armadilha do Sistema 1. Qualquer semelhança com fatos reais é mera coincidência; não há registro de erro com essas características na unidade mencionada.
-
-## Licença
-MIT – livre para estudo e adaptação, com menção à obra.
-      </pre>
-    </div>
-  </main>
+</div>
+<!-- aviso de conformidade com a validação brasileira -->
 </body>
 </html>
